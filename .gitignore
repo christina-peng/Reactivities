@@ -47,6 +47,7 @@ project.fragment.lock.json
 artifacts/
 **/Properties/launchSettings.json
 appsettings.json
+appsettings.Development.json
 
 # Ignore SQLite shared memory and write-ahead log files
 *.db-shm
