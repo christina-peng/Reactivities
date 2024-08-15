@@ -3,9 +3,7 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
-appsettings.json
-bin
-obj
+**/appsettings.json
 
 # User-specific files
 *.suo
@@ -23,8 +21,8 @@ obj
 x64/
 x86/
 bld/
-[Bb]in/
-[Oo]bj/
+**/[Bb]in/
+**/[Oo]bj/
 [Ll]og/
 
 # Visual Studio 2015 cache/options directory
