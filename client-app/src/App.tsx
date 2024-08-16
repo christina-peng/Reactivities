@@ -1,8 +1,14 @@
+import { ducks } from "./Duck"
+import DuckItem from "./DuckItem"
+
 function App() {
   return (
-    <>
+    <div>
       <h1>Reactivities</h1>
-    </>
+      {ducks.map(duck => (
+        <DuckItem key={duck.name} duck={duck} />
+      ))}
+    </div>
   )
 }
 
