@@ -1,13 +1,26 @@
-import { ducks } from "./Duck"
-import DuckItem from "./DuckItem"
+import axios from "axios";
+import { useEffect, useState } from "react"
 
 function App() {
+  const [activities, setActivities] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:5000/api/activities')
+    .then(res => {
+      setActivities(res.data);
+    })
+  }, []);
+
   return (
     <div>
       <h1>Reactivities</h1>
-      {ducks.map(duck => (
-        <DuckItem key={duck.name} duck={duck} />
-      ))}
+      <ul>
+        {activities.map((act: any) => (
+          <li key={act.id}>
+            {act.title}
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }
