@@ -1,7 +1,7 @@
 ﻿using Domain;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Persistence;
+using Application.Activities;
 
 namespace API.Controllers
 {
@@ -9,23 +9,16 @@ namespace API.Controllers
     [ApiController]
     public class ActivitiesController : BaseApiController
     {
-        private readonly DataContext dataContext;
-
-        public ActivitiesController(DataContext dataContext)
-        {
-            this.dataContext = dataContext;
-        }
-
         [HttpGet]
         public async Task<ActionResult<List<Activity>>> Get()
         {
-            return await this.dataContext.Activities.ToListAsync();
+            return await Mediator.Send(new List.Query());
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Activity>> GetById(Guid id)
         {
-            return await this.dataContext.Activities.FindAsync(id);
+            return await Mediator.Send(new Details.Query { Id = id });
         }
     }
 }
