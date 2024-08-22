@@ -15,7 +15,12 @@ function App() {
   useEffect(() => {
     agent.Activities.list()
     .then(res => {
-      setActivities(res);
+      let activities: Activity[] = [];
+      res.forEach(act => {
+        act.date = act.date.split('T')[0];
+        activities.push(act);
+      })
+      setActivities(activities);
     })
   }, []);
 
