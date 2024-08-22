@@ -3,6 +3,22 @@ import { Activity } from "../models/activity";
 
 axios.defaults.baseURL = "http://localhost:5000/api";
 
+const sleep = (delay: number) => {
+    return new Promise((resolve) => {
+        setTimeout(resolve, delay);
+    })
+}
+
+axios.interceptors.response.use(async res => {
+    try{
+        await sleep(1000);
+        return res;
+    } catch(err) {
+        console.log(err);
+        return Promise.reject(err);
+    }
+})
+
 const responseBody = <T> (response: AxiosResponse<T>) => response.data;
 
 const requests = {
